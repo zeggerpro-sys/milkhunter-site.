@@ -583,7 +583,33 @@
         <div class="section">
             <div class="section-title">🔍 Узнайте, сколько вы теряете</div>
             <div class="contact-form">
-                <form id="feedbackForm" action="https://api.web3forms.com/submit" method="POST">
+                <form id="feedbackForm" action="https://ВАШ_АДРЕС_WORKER.workers.dev" method="POST" enctype="multipart/form-data">
+    <div class="input-group">
+        <input type="text" name="name" placeholder="Ваше имя" required>
+    </div>
+    <div class="input-group">
+        <input type="tel" name="phone" placeholder="Телефон" required>
+    </div>
+    <div class="input-group">
+        <input type="email" name="email" placeholder="E-mail" required>
+    </div>
+    <div class="input-group">
+        <select name="herdSize">
+            <option value="200-500">Поголовье 200–500</option>
+            <option value="500-1000">500–1000</option>
+            <option value="1000+">1000+</option>
+        </select>
+    </div>
+    <div class="input-group">
+        <label for="rationFile">Загрузите файл с рационом (фото или PDF):</label>
+        <input type="file" id="rationFile" name="file" accept=".pdf,image/*">
+    </div>
+    <div class="input-group">
+        <textarea rows="3" name="message" placeholder="Дополнительная информация"></textarea>
+    </div>
+    <button type="submit" class="btn-primary">Отправить заявку</button>
+</form> action="blue-mode-4f92milkhunter.zegger-pro.workers.dev
+/" method="POST">
     <input type="hidden" name="access_key" value="929b341e-b022-4de1-97c9-043287fa9088">
     <input type="hidden" name="subject" value="Новая заявка с сайта MilkHunter">
     <input type="hidden" name="from_name" value="MilkHunter Site">
