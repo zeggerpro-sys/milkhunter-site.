@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>MilkHunter — интеллектуальное кормление КРС</title>
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #F6F1E7;
+            color: #1F2320;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        /* Палитра */
+        :root {
+            --brand-primary: #0B3D2E;
+            --brand-secondary: #0F4A3C;
+            --bg-main: #F6F1E7;
+            --bg-card: #E7DDCF;
+            --text-dark: #1F2320;
+            --gold-accent: #C6A55B;
+            --border-light: #CBD5CF;
+            --white: #FFFFFF;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 18px 0;
+            background: rgba(246, 241, 231, 0.96);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        .nav-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .farm-counter {
+            background: var(--brand-primary);
+            padding: 6px 24px;
+            border-radius: 60px;
+            color: white;
+            font-weight: 500;
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            box-shadow: 0 8px 18px rgba(11, 61, 46, 0.2);
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .farm-counter:hover {
+            background: var(--brand-secondary);
+        }
+
+        .counter-num {
+            font-size: 1.7rem;
+            font-weight: 800;
+            line-height: 1;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 500;
+            color: var(--text-dark);
+            transition: 0.2s;
+        }
+
+        .nav-links a:hover { color: var(--brand-primary); }
+
+        .btn-primary {
+            background: var(--brand-primary);
+            color: white;
+            padding: 12px 34px;
+            border-radius: 60px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: 0.2s;
+            display: inline-block;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .btn-primary:hover {
+            background: var(--brand-secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(11, 61, 46, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--brand-primary);
+            color: var(--brand-primary);
+            padding: 10px 28px;
+            border-radius: 60px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+        .btn-outline:hover {
+            background: var(--brand-primary);
+            color: white;
+        }
+
+        .hero {
+            padding-top: 130px;
+            padding-bottom: 80px;
+            background: var(--bg-main);
+        }
+
+        .hero-grid {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .hero-text {
+            flex: 1;
+        }
+
+        .hero-text h1 {
+            font-size: 3.8rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+
+        .hero-stats-banner {
+            display: flex;
+            gap: 24px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        .hero-stat {
+            background: var(--bg-card);
+            border-radius: 48px;
+            padding: 8px 20px;
+            font-weight: 600;
+            color: var(--brand-primary);
+        }
+
+        .swiper {
+            width: 100%;
+            max-width: 550px;
+            border-radius: 40px;
+            box-shadow: 0 35px 55px rgba(0, 0, 0, 0.08);
+        }
+        .swiper-slide img {
+            width: 100%;
+            height: 380px;
+            object-fit: cover;
+            border-radius: 40px;
+        }
+
+        .section {
+            padding: 90px 0;
+        }
+
+        .section-title {
+            font-size: 2.6rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+
+        .section-sub {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 56px;
+            color: var(--text-dark);
+            opacity: 0.8;
+            font-size: 1.1rem;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 35px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border-radius: 42px;
+            padding: 36px 28px;
+            transition: all 0.3s;
+            border: none;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+        }
+        .card:hover {
+            transform: translateY(-8px);
+            background: #f1e5d5;
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.05);
+        }
+        .card-icon {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            color: var(--gold-accent);
+        }
+        .card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        /* step cards */
+        .step-card {
+            position: relative;
+            padding-left: 60px;
+        }
+        .step-number {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 44px;
+            height: 44px;
+            background: var(--brand-primary);
+            color: white;
+            border-radius: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.4rem;
+        }
+
+        /* tabs */
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        .tab-btn {
+            background: transparent;
+            border: 2px solid var(--border-light);
+            padding: 12px 32px;
+            border-radius: 60px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            color: var(--text-dark);
+        }
+        .tab-btn.active {
+            background: var(--brand-primary);
+            border-color: var(--brand-primary);
+            color: white;
+        }
+        .tab-btn:hover {
+            border-color: var(--brand-primary);
+        }
+
+        .tab-content {
+            display: none;
+            background: var(--bg-card);
+            border-radius: 48px;
+            padding: 35px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.03);
+            border: 1px solid var(--border-light);
+        }
+        .tab-content.active {
+            display: block;
+            animation: fadeSlide 0.5s ease;
+        }
+        @keyframes fadeSlide {
+            from { opacity: 0; transform: translateY(15px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+
+        .economy-row {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border-light);
+            padding: 20px 0;
+            font-size: 1rem;
+        }
+        .economy-highlight {
+            color: var(--brand-primary);
+            font-weight: 800;
+            font-size: 1.5rem;
+        }
+
+        .calculator {
+            background: var(--bg-card);
+            border-radius: 56px;
+            padding: 45px;
+            text-align: center;
+        }
+        .calc-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 30px;
+            justify-content: center;
+        }
+        .calc-field {
+            flex: 1;
+            min-width: 200px;
+        }
+        .calc-field label {
+            font-weight: 600;
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-dark);
+        }
+        .calc-field input, .calc-field input[type="range"] {
+            width: 100%;
+            padding: 14px 20px;
+            border-radius: 80px;
+            border: 1px solid var(--border-light);
+            background: white;
+            font-size: 1rem;
+        }
+        .result-box {
+            background: #FFFFFFE6;
+            border-radius: 40px;
+            padding: 28px;
+            margin-top: 20px;
+            border: 1px solid var(--border-light);
+        }
+        .progress-bar {
+            height: 12px;
+            background: var(--border-light);
+            border-radius: 20px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        .progress-fill {
+            width: 0%;
+            height: 100%;
+            background: var(--gold-accent);
+            border-radius: 20px;
+            transition: width 0.5s;
+        }
+
+        /* кейсы */
+        .case-card {
+            background: var(--bg-card);
+            border-radius: 32px;
+            padding: 28px;
+            text-align: center;
+            border: 1px solid var(--border-light);
+        }
+        .case-stats {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--brand-primary);
+        }
+
+        .contact-form {
+            max-width: 780px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            border-radius: 56px;
+            padding: 48px;
+            border: 1px solid var(--border-light);
+        }
+        .input-group {
+            margin-bottom: 24px;
+        }
+        .input-group input, .input-group textarea, .input-group select {
+            width: 100%;
+            padding: 18px 26px;
+            border-radius: 80px;
+            border: 1px solid var(--border-light);
+            font-size: 1rem;
+            background: white;
+        }
+        .input-group textarea {
+            border-radius: 32px;
+            resize: vertical;
+        }
+        footer {
+            background: var(--brand-primary);
+            color: #CBD5CF;
+            text-align: center;
+            padding: 45px 20px;
+        }
+        .qr-code {
+            margin-top: 20px;
+        }
+        .qr-code img {
+            width: 80px;
+            height: 80px;
+        }
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        @media (max-width: 880px) {
+            .hero-text h1 { font-size: 2.4rem; }
+            .section-title { font-size: 2rem; }
+            .hero-stats-banner { justify-content: center; }
+        }
+        html {
+            scroll-padding-top: 95px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    <div class="container nav-flex">
+        <div class="logo">🐄 MilkHunter</div>
+        <div class="farm-counter" id="counterBlock">
+            <span>🤝 ферм с нами</span>
+            <span class="counter-num" id="farmCount">0</span>
+        </div>
+        <div class="nav-links">
+            <a href="#about">О программе</a>
+            <a href="#how">Как это работает</a>
+            <a href="#cases">Результаты</a>
+            <a href="#calc">Калькулятор</a>
+            <a href="#contact" class="btn-primary" style="padding: 8px 26px;">Узнать потери →</a>
+        </div>
+    </div>
+</div>
+
+<main>
+    <div class="hero">
+        <div class="container hero-grid">
+            <div class="hero-text">
+                <div style="background: var(--bg-card); display: inline-block; padding: 6px 20px; border-radius: 40px; font-weight: 600; margin-bottom: 20px;">⚡ Искусственный интеллект для животноводства</div>
+                <h1>MilkHunter <br> Точность кормления = Рост прибыли</h1>
+                <p>Автоматический анализ рационов, ИИ-рекомендации, расчёт оптимальной смеси с учётом ваших кормов и цен. Экономия до 15% затрат.</p>
+                <div class="hero-stats-banner">
+                    <div class="hero-stat">📉 Экономия до 15% кормов</div>
+                    <div class="hero-stat">⏱️ Окупаемость 2–4 мес</div>
+                    <div class="hero-stat">🐄 >140 ферм</div>
+                </div>
+                <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+                    <a href="#calc" class="btn-primary">Рассчитать окупаемость</a>
+                    <a href="#contact" class="btn-outline">Найти ошибки в рационе →</a>
+                </div>
+            </div>
+            <!-- Карусель с новыми изображениями: поле, коровы в стойле, трактор -->
+            <div class="swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=600&h=400&fit=crop" alt="Поле"></div>
+                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1548532928-b34e3be62fc9?w=600&h=400&fit=crop" alt="Коровы в стойле"></div>
+                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1596136210316-9acf4d1cae9c?w=600&h=400&fit=crop" alt="Трактор"></div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="about">
+        <div class="section">
+            <div class="section-title">Что даёт MilkHunter</div>
+            <div class="card-grid">
+                <div class="card"><div class="card-icon">🧠</div><h3>ИИ‑анализ кормов</h3><p>Загрузите фото, PDF или лабораторные анализы — система сама извлечёт питательность и укажет слабые места.</p></div>
+                <div class="card"><div class="card-icon">📊</div><h3>Расчёт оптимального рациона</h3><p>С учётом группы животных, продуктивности и ваших складских остатков. ИИ подбирает идеальный баланс.</p></div>
+                <div class="card"><div class="card-icon">📲</div><h3>Мобильное приложение</h3><p>Оператор получает задание на планшет, фиксирует время замешивания и фактические затраты.</p></div>
+                <div class="card"><div class="card-icon">💰</div><h3>Калькулятор скрытых потерь</h3><p>Узнайте, сколько молока и денег вы теряете из‑за неоптимального кормления.</p></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="how" style="background: var(--bg-main);">
+        <div class="container section">
+            <div class="section-title">🧠 Как ИИ рассчитывает рацион</div>
+            <div class="card-grid">
+                <div class="card step-card"><div class="step-number">1</div><h3>Загрузка данных</h3><p>Система принимает лабораторные анализы, фотографии и PDF‑файлы с составами кормов. Автоматически извлекает все показатели (сухое вещество, протеин, клетчатку, жир, микроэлементы) и сразу даёт рекомендации.</p></div>
+                <div class="card step-card"><div class="step-number">2</div><h3>Учёт физиологии</h3><p>Указываете группу животных (дойные, сухостой, молодняк) и продуктивность — MilkHunter подбирает нормы из научной базы.</p></div>
+                <div class="card step-card"><div class="step-number">3</div><h3>Оптимизация смеси</h3><p>С учётом имеющихся на складе кормов и текущих цен на рынке ИИ рассчитывает рацион с минимальной стоимостью при полном соблюдении зоотехнических требований.</p></div>
+                <div class="card step-card"><div class="step-number">4</div><h3>Готовый рацион и отчёт</h3><p>Вы получаете детальный состав (кг на голову), прогноз удоя и экономический эффект — до копейки.</p></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Доказательная база: кейсы ферм -->
+    <div class="container" id="cases">
+        <div class="section">
+            <div class="section-title">🏆 Реальные результаты ферм</div>
+            <div class="section-sub">Данные собраны с хозяйств, внедривших MilkHunter</div>
+            <div class="card-grid">
+                <div class="case-card">
+                    <div class="case-stats" data-target="12">+0%</div>
+                    <p>прирост удоя</p>
+                    <small>ферма «Родные просторы», 620 голов</small>
+                </div>
+                <div class="case-card">
+                    <div class="case-stats" data-target="15">-0%</div>
+                    <p>снижение затрат на корма</p>
+                    <small>Агрохолдинг «Заречье», 1200 коров</small>
+                </div>
+                <div class="case-card">
+                    <div class="case-stats" data-target="8.2">0%</div>
+                    <p>рост выхода молока</p>
+                    <small>ООО «Луговое», 350 голов</small>
+                </div>
+                <div class="case-card">
+                    <div class="case-stats" data-target="21">0%</div>
+                    <p>снижение кетозов</p>
+                    <small>молочный комплекс «Нива»</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="economy">
+        <div class="section">
+            <div class="section-title">💰 Скрытые резервы вашей фермы</div>
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="economyTab">📉 Экономия на кормах</button>
+                <button class="tab-btn" data-tab="milkTab">🥛 Потерянное молоко</button>
+            </div>
+            <div id="economyTab" class="tab-content active">
+                <div class="economy-row"><span>📦 Ежемесячные затраты на корма (400 голов)</span><strong>1 600 000 ₽</strong></div>
+                <div class="economy-row"><span>📉 Типичный перерасход без MilkHunter</span><strong>до 12%</strong></div>
+                <div class="economy-row"><span>✅ Экономия после внедрения (консервативно 7%)</span><strong>112 000 ₽/мес</strong></div>
+                <div class="economy-row"><span>➕ Рост надоев (+2%)</span><strong>+ 34 000 ₽/мес</strong></div>
+                <div class="economy-row"><span>🏆 ИТОГО выгода в месяц</span><span class="economy-highlight">146 000 ₽</span></div>
+                <div class="economy-row"><span>💳 Годовая подписка MilkHunter</span><strong>200 000 ₽</strong></div>
+                <div class="economy-row"><span>⏱️ Срок окупаемости</span><span class="economy-highlight">~1,4 месяца</span></div>
+            </div>
+            <div id="milkTab" class="tab-content">
+                <div class="economy-row"><span>🐄 Средний надой (400 голов)</span><strong>28 л/сутки</strong></div>
+                <div class="economy-row"><span>📉 Потери из-за дисбаланса рациона</span><strong>до 2,5 л/корову/день</strong></div>
+                <div class="economy-row"><span>🥛 Недополученное молоко в месяц</span><strong>≈ 30 000 литров</strong></div>
+                <div class="economy-row"><span>💰 Упущенная выручка (45 ₽/л)</span><strong>1 350 000 ₽/мес</strong></div>
+                <div class="economy-row"><span>✅ Потенциал восстановления с MilkHunter</span><span class="economy-highlight">до 70% от потерь</span></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="calc">
+        <div class="section">
+            <div class="section-title">📊 Ваш калькулятор экономии</div>
+            <div class="calculator">
+                <div class="calc-group">
+                    <div class="calc-field"><label>🐄 Коров (голов)</label><input type="range" id="cowsRange" min="50" max="2000" step="10" value="350"><span id="cowsVal">350</span></div>
+                    <div class="calc-field"><label>💰 Затраты на корма (₽/мес)</label><input type="range" id="feedCostRange" min="200000" max="70000000" step="100000" value="1400000"><span id="feedCostVal">1 400 000</span></div>
+                    <div class="calc-field"><label>🥛 Цена молока ₽/кг</label><input type="number" id="milkPrice" value="45" step="1"></div>
+                </div>
+                <div class="calc-group">
+                    <div class="calc-field"><label>💡 Экономия кормов (%)</label><input type="number" id="savePct" value="7" step="0.5"></div>
+                    <div class="calc-field"><label>📈 Рост продуктивности (%)</label><input type="number" id="gainPct" value="2" step="0.5"></div>
+                    <div class="calc-field"><label>📅 Базовый надой (кг/сут)</label><input type="number" id="baseYield" value="28"></div>
+                </div>
+                <button id="calcBtn" class="btn-primary" style="width:100%;">Рассчитать экономию</button>
+                <button id="pdfBtn" class="btn-outline" style="margin-top:20px;">📄 Скачать отчёт в PDF</button>
+                <div id="calcResult" class="result-box"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="contact">
+        <div class="section">
+            <div class="section-title">🔍 Узнайте, сколько вы теряете</div>
+            <div class="contact-form">
+                <form id="feedbackForm">
+                    <div class="input-group"><input type="text" placeholder="Ваше имя" required id="name"></div>
+                    <div class="input-group"><input type="tel" placeholder="Телефон" required id="phone"></div>
+                    <div class="input-group"><input type="email" placeholder="E-mail" required id="email"></div>
+                    <div class="input-group">
+                        <select id="herdSize">
+                            <option value="200-500">Поголовье 200–500</option>
+                            <option value="500-1000">500–1000</option>
+                            <option value="1000+">1000+</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label><input type="checkbox" id="sendReport"> Отправить детальный анализ текущего рациона</label>
+                    </div>
+                    <button type="submit" class="btn-primary" style="width:100%;">Получить анализ рациона →</button>
+                </form>
+                <p style="margin-top: 20px; font-size:0.8rem; text-align:center;">Мы подготовим индивидуальный отчёт об ошибках в кормлении и скрытых потерях. Бесплатно.</p>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <p>© 2026 MilkHunter</p>
+        <p>📞 +7 (927) 738-22-70 &nbsp; ✉️ novoselov_20_00@mail.ru</p>
+        <div class="qr-code">
+            <a href="https://wa.me/79277382270" target="_blank"><img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://wa.me/79277382270" alt="QR-код WhatsApp"></a>
+            <p>Напишите нам в WhatsApp</p>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+    // Swiper карусель
+    new Swiper('.swiper', { loop: true, autoplay: { delay: 3500, disableOnInteraction: false }, pagination: { el: '.swiper-pagination', clickable: true } });
+
+    // Анимированный счётчик ферм
+    const farmSpan = document.getElementById('farmCount');
+    let targetFarms = 147;
+    let currentFarms = 0;
+    const counterBlock = document.getElementById('counterBlock');
+    function animateCounter() {
+        let step = Math.ceil(targetFarms / 50);
+        let interval = setInterval(() => {
+            currentFarms += step;
+            if (currentFarms >= targetFarms) {
+                currentFarms = targetFarms;
+                farmSpan.innerText = currentFarms;
+                clearInterval(interval);
+            } else farmSpan.innerText = currentFarms;
+        }, 20);
+    }
+    animateCounter();
+    counterBlock.addEventListener('click', () => {
+        let newVal = prompt('Введите количество ферм (только число):', targetFarms);
+        if (newVal !== null && !isNaN(parseInt(newVal))) {
+            targetFarms = parseInt(newVal);
+            currentFarms = 0;
+            animateCounter();
+        }
+    });
+
+    // Анимированные цифры в кейсах
+    const caseNumbers = document.querySelectorAll('.case-stats');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const el = entry.target;
+                const target = parseFloat(el.getAttribute('data-target'));
+                let current = 0;
+                const step = Math.ceil(target / 40);
+                const upd = setInterval(() => {
+                    current += step;
+                    if (current >= target) {
+                        el.innerText = (el.innerText.includes('-') ? '-' : '+') + target + (el.innerText.includes('%') ? '%' : '');
+                        clearInterval(upd);
+                    } else el.innerText = (el.innerText.includes('-') ? '-' : '+') + current + (el.innerText.includes('%') ? '%' : '');
+                }, 20);
+                observer.unobserve(el);
+            }
+        });
+    }, { threshold: 0.5 });
+    caseNumbers.forEach(el => observer.observe(el));
+
+    // Калькулятор с ползунками
+    const cowsRange = document.getElementById('cowsRange');
+    const cowsVal = document.getElementById('cowsVal');
+    const feedCostRange = document.getElementById('feedCostRange');
+    const feedCostVal = document.getElementById('feedCostVal');
+    const milkPriceInput = document.getElementById('milkPrice');
+    const savePctInput = document.getElementById('savePct');
+    const gainPctInput = document.getElementById('gainPct');
+    const baseYieldInput = document.getElementById('baseYield');
+    const calcBtn = document.getElementById('calcBtn');
+    const resultDiv = document.getElementById('calcResult');
+
+    cowsRange.addEventListener('input', () => { cowsVal.innerText = cowsRange.value; updateCalc(); });
+    feedCostRange.addEventListener('input', () => { feedCostVal.innerText = Number(feedCostRange.value).toLocaleString(); updateCalc(); });
+    milkPriceInput.addEventListener('input', updateCalc);
+    savePctInput.addEventListener('input', updateCalc);
+    gainPctInput.addEventListener('input', updateCalc);
+    baseYieldInput.addEventListener('input', updateCalc);
+
+    function updateCalc() {
+        let cows = parseFloat(cowsRange.value);
+        let feedCost = parseFloat(feedCostRange.value);
+        let milkPrice = parseFloat(milkPriceInput.value) || 45;
+        let savePct = parseFloat(savePctInput.value) / 100 || 0;
+        let gainPct = parseFloat(gainPctInput.value) / 100 || 0;
+        let baseYield = parseFloat(baseYieldInput.value) || 28;
+        const feedSavings = feedCost * savePct;
+        const extraMilkDay = baseYield * gainPct;
+        const extraMilkMonth = extraMilkDay * cows * 30;
+        const extraRevenue = extraMilkMonth * milkPrice;
+        const totalBenefit = feedSavings + extraRevenue;
+        const subscription = 200000;
+        let payback = totalBenefit > 0 ? (subscription / totalBenefit).toFixed(1) : '—';
+        let paybackPercent = totalBenefit > 0 ? Math.min(100, (totalBenefit / subscription) * 100) : 0;
+        resultDiv.innerHTML = `
+            <strong style="font-size:1.3rem;">✅ Ваш результат</strong><br><br>
+            🐄 Стадо: <strong>${cows}</strong> коров<br>
+            💰 Экономия кормов: <strong style="color:#0B3D2E;">${feedSavings.toFixed(0)} ₽/мес</strong><br>
+            🥛 Доп. выручка от роста удоев: <strong style="color:#0B3D2E;">${extraRevenue.toFixed(0)} ₽/мес</strong><br>
+            🎯 Общая ежемесячная выгода: <strong style="font-size:1.8rem; color:#0B3D2E;">${totalBenefit.toFixed(0)} ₽</strong><br>
+            💳 Годовая подписка: 200 000 ₽<br>
+            ⏱️ Срок окупаемости: <strong>${payback} месяцев</strong>
+            <div class="progress-bar"><div class="progress-fill" style="width: ${paybackPercent}%;"></div></div>
+            <span style="background:#E7DDCF; padding:4px 18px; display:inline-block; border-radius:40px; margin-top:16px;">🚀 Закажите анализ вашего рациона →</span>
+        `;
+    }
+    updateCalc();
+
+    // PDF отчёт
+    document.getElementById('pdfBtn').addEventListener('click', () => {
+        alert('Функция сохранения отчёта в разработке. Вы можете скопировать данные калькулятора.');
+        window.print();
+    });
+
+    // Форма
+    const form = document.getElementById('feedbackForm');
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('name').value.trim();
+        if (!name) alert('Пожалуйста, заполните имя.');
+        else alert(`Спасибо, ${name}! Мы подготовим индивидуальный отчёт об ошибках в кормлении и свяжемся с вами.`);
+        form.reset();
+    });
+
+    // scroll reveal
+    const faders = document.querySelectorAll('.fade-up');
+    const appearOptions = { threshold: 0.2 };
+    const appearOnScroll = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) entry.target.classList.add('visible');
+        });
+    }, appearOptions);
+    document.querySelectorAll('.card, .case-card, .economy-table').forEach(el => { el.classList.add('fade-up'); appearOnScroll.observe(el); });
+</script>
+</body>
+</html>
