@@ -10,12 +10,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
     <style>
+        /* ----- RESET & GLOBALS ----- */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
             font-family: 'Inter', sans-serif;
             background: #F6F1E7;
@@ -23,8 +23,6 @@
             scroll-behavior: smooth;
             overflow-x: hidden;
         }
-
-        /* Палитра */
         :root {
             --brand-primary: #0B3D2E;
             --brand-secondary: #0F4A3C;
@@ -35,337 +33,286 @@
             --border-light: #CBD5CF;
             --white: #FFFFFF;
         }
-
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        /* ----- navbar (адаптив) ----- */
         .navbar {
             position: fixed;
             top: 0;
             width: 100%;
             z-index: 1000;
-            padding: 18px 0;
+            padding: 12px 0;
             background: rgba(246, 241, 231, 0.96);
             backdrop-filter: blur(16px);
             border-bottom: 1px solid var(--border-light);
         }
-
-        .container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 32px;
-        }
-
         .nav-flex {
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 20px;
+            gap: 12px;
         }
-
         .logo {
-            font-size: 2rem;
+            font-size: 1.6rem;
             font-weight: 800;
-            letter-spacing: -0.02em;
             background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
             background-clip: text;
             -webkit-background-clip: text;
             color: transparent;
         }
-
         .farm-counter {
             background: var(--brand-primary);
-            padding: 6px 24px;
+            padding: 4px 14px;
             border-radius: 60px;
             color: white;
             font-weight: 500;
             display: flex;
             align-items: baseline;
-            gap: 12px;
-            box-shadow: 0 8px 18px rgba(11, 61, 46, 0.2);
+            gap: 6px;
             cursor: pointer;
-            transition: 0.2s;
+            font-size: 0.8rem;
         }
-        .farm-counter:hover {
-            background: var(--brand-secondary);
-        }
-
         .counter-num {
-            font-size: 1.7rem;
+            font-size: 1.2rem;
             font-weight: 800;
-            line-height: 1;
         }
-
         .nav-links {
             display: flex;
-            gap: 32px;
+            gap: 16px;
             align-items: center;
+            flex-wrap: wrap;
         }
-
         .nav-links a {
             text-decoration: none;
             font-weight: 500;
             color: var(--text-dark);
+            font-size: 0.85rem;
             transition: 0.2s;
         }
-
         .nav-links a:hover { color: var(--brand-primary); }
-
         .btn-primary {
             background: var(--brand-primary);
             color: white;
-            padding: 12px 34px;
+            padding: 8px 20px;
             border-radius: 60px;
             font-weight: 600;
+            font-size: 0.85rem;
             border: none;
             cursor: pointer;
             transition: 0.2s;
             display: inline-block;
             text-align: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
         }
-
         .btn-primary:hover {
             background: var(--brand-secondary);
             transform: translateY(-2px);
-            box-shadow: 0 12px 24px rgba(11, 61, 46, 0.3);
         }
-
         .btn-outline {
             background: transparent;
             border: 2px solid var(--brand-primary);
             color: var(--brand-primary);
-            padding: 10px 28px;
+            padding: 6px 18px;
             border-radius: 60px;
             font-weight: 600;
             text-decoration: none;
-            transition: 0.2s;
+            display: inline-block;
+            font-size: 0.85rem;
         }
-        .btn-outline:hover {
-            background: var(--brand-primary);
-            color: white;
-        }
-
+        /* ----- hero ----- */
         .hero {
-            padding-top: 130px;
-            padding-bottom: 80px;
+            padding-top: 100px;
+            padding-bottom: 50px;
             background: var(--bg-main);
         }
-
         .hero-grid {
             display: flex;
             flex-wrap: wrap;
             align-items: center;
-            gap: 60px;
+            gap: 30px;
         }
-
         .hero-text {
             flex: 1;
+            min-width: 250px;
         }
-
         .hero-text h1 {
-            font-size: 3.8rem;
+            font-size: clamp(1.8rem, 5vw, 3.2rem);
             font-weight: 800;
             line-height: 1.2;
-            margin-bottom: 20px;
-            color: var(--text-dark);
+            margin-bottom: 18px;
         }
-
         .hero-stats-banner {
             display: flex;
-            gap: 24px;
-            margin: 30px 0;
             flex-wrap: wrap;
+            gap: 12px;
+            margin: 20px 0;
         }
         .hero-stat {
             background: var(--bg-card);
             border-radius: 48px;
-            padding: 8px 20px;
+            padding: 5px 16px;
             font-weight: 600;
-            color: var(--brand-primary);
+            font-size: 0.85rem;
         }
-
         .swiper {
             width: 100%;
-            max-width: 550px;
-            border-radius: 40px;
-            box-shadow: 0 35px 55px rgba(0, 0, 0, 0.08);
+            max-width: 480px;
+            border-radius: 28px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.08);
         }
         .swiper-slide img {
             width: 100%;
-            height: 380px;
+            height: auto;
+            aspect-ratio: 4/3;
             object-fit: cover;
-            border-radius: 40px;
+            border-radius: 28px;
         }
-
+        /* ----- общие секции ----- */
         .section {
-            padding: 90px 0;
+            padding: 50px 0;
         }
-
         .section-title {
-            font-size: 2.6rem;
+            font-size: clamp(1.6rem, 4vw, 2.3rem);
             font-weight: 700;
             text-align: center;
             margin-bottom: 20px;
-            color: var(--text-dark);
         }
-
         .section-sub {
             text-align: center;
             max-width: 700px;
-            margin: 0 auto 56px;
+            margin: 0 auto 35px;
+            font-size: 1rem;
             color: var(--text-dark);
-            opacity: 0.8;
-            font-size: 1.1rem;
+            opacity: 0.85;
         }
-
         .card-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 35px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
         }
-
         .card {
             background: var(--bg-card);
-            border-radius: 42px;
-            padding: 36px 28px;
-            transition: all 0.3s;
-            border: none;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.02);
-        }
-        .card:hover {
-            transform: translateY(-8px);
-            background: #f1e5d5;
-            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.05);
+            border-radius: 32px;
+            padding: 24px 20px;
+            transition: 0.3s;
         }
         .card-icon {
-            font-size: 2.8rem;
-            margin-bottom: 20px;
+            font-size: 2.2rem;
+            margin-bottom: 14px;
             color: var(--gold-accent);
         }
         .card h3 {
-            font-size: 1.8rem;
-            margin-bottom: 15px;
+            font-size: 1.4rem;
+            margin-bottom: 12px;
         }
-
-        /* step cards */
         .step-card {
             position: relative;
-            padding-left: 60px;
+            padding-left: 50px;
         }
         .step-number {
             position: absolute;
             left: 0;
             top: 0;
-            width: 44px;
-            height: 44px;
+            width: 36px;
+            height: 36px;
             background: var(--brand-primary);
             color: white;
             border-radius: 60px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 800;
-            font-size: 1.4rem;
+            font-weight: 700;
+            font-size: 1.2rem;
         }
-
-        /* tabs */
         .tabs {
             display: flex;
+            flex-wrap: wrap;
             justify-content: center;
-            gap: 20px;
-            margin-bottom: 40px;
+            gap: 12px;
+            margin-bottom: 30px;
         }
         .tab-btn {
             background: transparent;
             border: 2px solid var(--border-light);
-            padding: 12px 32px;
+            padding: 8px 22px;
             border-radius: 60px;
             font-weight: 600;
             cursor: pointer;
             transition: 0.2s;
-            color: var(--text-dark);
+            font-size: 0.9rem;
         }
         .tab-btn.active {
             background: var(--brand-primary);
             border-color: var(--brand-primary);
             color: white;
         }
-        .tab-btn:hover {
-            border-color: var(--brand-primary);
-        }
-
         .tab-content {
             display: none;
             background: var(--bg-card);
-            border-radius: 48px;
-            padding: 35px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.03);
-            border: 1px solid var(--border-light);
+            border-radius: 36px;
+            padding: 20px;
         }
         .tab-content.active {
             display: block;
-            animation: fadeSlide 0.5s ease;
         }
-        @keyframes fadeSlide {
-            from { opacity: 0; transform: translateY(15px);}
-            to { opacity: 1; transform: translateY(0);}
-        }
-
         .economy-row {
             display: flex;
+            flex-wrap: wrap;
             justify-content: space-between;
             border-bottom: 1px solid var(--border-light);
-            padding: 20px 0;
-            font-size: 1rem;
+            padding: 12px 0;
+            gap: 10px;
         }
         .economy-highlight {
             color: var(--brand-primary);
             font-weight: 800;
-            font-size: 1.5rem;
+            font-size: 1.2rem;
         }
-
         .calculator {
             background: var(--bg-card);
-            border-radius: 56px;
-            padding: 45px;
-            text-align: center;
+            border-radius: 40px;
+            padding: 30px 20px;
         }
         .calc-group {
             display: flex;
             flex-wrap: wrap;
-            gap: 30px;
-            margin-bottom: 30px;
+            gap: 20px;
+            margin-bottom: 20px;
             justify-content: center;
         }
         .calc-field {
             flex: 1;
-            min-width: 200px;
+            min-width: 160px;
         }
         .calc-field label {
             font-weight: 600;
             display: block;
-            margin-bottom: 8px;
-            color: var(--text-dark);
+            margin-bottom: 5px;
+            font-size: 0.9rem;
         }
-        .calc-field input, .calc-field input[type="range"] {
+        .calc-field input {
             width: 100%;
-            padding: 14px 20px;
-            border-radius: 80px;
+            padding: 10px 14px;
+            border-radius: 60px;
             border: 1px solid var(--border-light);
             background: white;
-            font-size: 1rem;
+            font-size: 0.9rem;
         }
         .result-box {
-            background: #FFFFFFE6;
-            border-radius: 40px;
-            padding: 28px;
+            background: white;
+            border-radius: 36px;
+            padding: 20px;
             margin-top: 20px;
-            border: 1px solid var(--border-light);
+            text-align: center;
         }
         .progress-bar {
-            height: 12px;
+            height: 8px;
             background: var(--border-light);
             border-radius: 20px;
-            margin: 20px 0;
+            margin: 15px 0;
             overflow: hidden;
         }
         .progress-fill {
@@ -373,75 +320,131 @@
             height: 100%;
             background: var(--gold-accent);
             border-radius: 20px;
-            transition: width 0.5s;
+            transition: width 0.4s;
         }
-
-        /* кейсы */
         .case-card {
             background: var(--bg-card);
-            border-radius: 32px;
-            padding: 28px;
+            border-radius: 28px;
+            padding: 20px;
             text-align: center;
-            border: 1px solid var(--border-light);
         }
         .case-stats {
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: 800;
             color: var(--brand-primary);
         }
-
         .contact-form {
             max-width: 780px;
             margin: 0 auto;
             background: var(--bg-card);
-            border-radius: 56px;
-            padding: 48px;
-            border: 1px solid var(--border-light);
+            border-radius: 48px;
+            padding: 30px 24px;
         }
         .input-group {
-            margin-bottom: 24px;
+            margin-bottom: 20px;
         }
         .input-group input, .input-group textarea, .input-group select {
             width: 100%;
-            padding: 18px 26px;
-            border-radius: 80px;
+            padding: 14px 20px;
+            border-radius: 60px;
             border: 1px solid var(--border-light);
-            font-size: 1rem;
+            font-size: 0.95rem;
             background: white;
         }
         .input-group textarea {
-            border-radius: 32px;
+            border-radius: 28px;
             resize: vertical;
         }
         footer {
             background: var(--brand-primary);
             color: #CBD5CF;
             text-align: center;
-            padding: 45px 20px;
-        }
-        .qr-code {
-            margin-top: 20px;
+            padding: 35px 20px;
         }
         .qr-code img {
-            width: 80px;
-            height: 80px;
+            width: 70px;
+            height: 70px;
+            margin-top: 10px;
         }
+        /* ----- адаптивность под телефон ----- */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 16px;
+            }
+            .hero-grid {
+                flex-direction: column;
+            }
+            .hero-text {
+                text-align: center;
+            }
+            .hero-stats-banner {
+                justify-content: center;
+            }
+            .swiper {
+                max-width: 100%;
+            }
+            .nav-flex {
+                justify-content: center;
+            }
+            .logo {
+                font-size: 1.4rem;
+            }
+            .farm-counter {
+                padding: 2px 12px;
+            }
+            .counter-num {
+                font-size: 1rem;
+            }
+            .nav-links {
+                justify-content: center;
+                gap: 12px;
+            }
+            .btn-primary, .btn-outline {
+                padding: 6px 16px;
+                font-size: 0.75rem;
+            }
+            .card h3 {
+                font-size: 1.2rem;
+            }
+            .step-card {
+                padding-left: 42px;
+            }
+            .step-number {
+                width: 30px;
+                height: 30px;
+                font-size: 1rem;
+            }
+            .calc-field {
+                min-width: 140px;
+            }
+            .result-box {
+                padding: 16px;
+            }
+        }
+        @media (max-width: 480px) {
+            .section {
+                padding: 35px 0;
+            }
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+            .tabs {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .tab-btn {
+                text-align: center;
+            }
+        }
+        /* анимации */
         .fade-up {
             opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.7s ease, transform 0.7s ease;
+            transform: translateY(25px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
         }
         .fade-up.visible {
             opacity: 1;
             transform: translateY(0);
-        }
-        @media (max-width: 880px) {
-            .hero-text h1 { font-size: 2.4rem; }
-            .section-title { font-size: 2rem; }
-            .hero-stats-banner { justify-content: center; }
-        }
-        html {
-            scroll-padding-top: 95px;
         }
     </style>
 </head>
@@ -456,10 +459,10 @@
         </div>
         <div class="nav-links">
             <a href="#about">О программе</a>
-            <a href="#how">Как это работает</a>
+            <a href="#how">Как работает</a>
             <a href="#cases">Результаты</a>
             <a href="#calc">Калькулятор</a>
-            <a href="#contact" class="btn-primary" style="padding: 8px 26px;">Узнать потери →</a>
+            <a href="#contact" class="btn-primary" style="padding: 6px 18px;">Узнать потери</a>
         </div>
     </div>
 </div>
@@ -468,7 +471,7 @@
     <div class="hero">
         <div class="container hero-grid">
             <div class="hero-text">
-                <div style="background: var(--bg-card); display: inline-block; padding: 6px 20px; border-radius: 40px; font-weight: 600; margin-bottom: 20px;">⚡ Искусственный интеллект для животноводства</div>
+                <div style="background: var(--bg-card); display: inline-block; padding: 5px 16px; border-radius: 40px; font-weight: 600; margin-bottom: 15px; font-size:0.85rem;">⚡ Искусственный интеллект для животноводства</div>
                 <h1>MilkHunter <br> Точность кормления = Рост прибыли</h1>
                 <p>Автоматический анализ рационов, ИИ-рекомендации, расчёт оптимальной смеси с учётом ваших кормов и цен. Экономия до 15% затрат.</p>
                 <div class="hero-stats-banner">
@@ -476,12 +479,11 @@
                     <div class="hero-stat">⏱️ Окупаемость 2–4 мес</div>
                     <div class="hero-stat">🐄 >140 ферм</div>
                 </div>
-                <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+                <div style="display: flex; gap: 15px; flex-wrap: wrap;">
                     <a href="#calc" class="btn-primary">Рассчитать окупаемость</a>
-                    <a href="#contact" class="btn-outline">Найти ошибки в рационе →</a>
+                    <a href="#contact" class="btn-outline">Найти ошибки в рационе</a>
                 </div>
             </div>
-            <!-- Карусель с новыми изображениями: поле, коровы в стойле, трактор -->
             <div class="swiper">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=600&h=400&fit=crop" alt="Поле"></div>
@@ -517,32 +519,15 @@
         </div>
     </div>
 
-    <!-- Доказательная база: кейсы ферм -->
     <div class="container" id="cases">
         <div class="section">
             <div class="section-title">🏆 Реальные результаты ферм</div>
             <div class="section-sub">Данные собраны с хозяйств, внедривших MilkHunter</div>
             <div class="card-grid">
-                <div class="case-card">
-                    <div class="case-stats" data-target="12">+0%</div>
-                    <p>прирост удоя</p>
-                    <small>ферма «Родные просторы», 620 голов</small>
-                </div>
-                <div class="case-card">
-                    <div class="case-stats" data-target="15">-0%</div>
-                    <p>снижение затрат на корма</p>
-                    <small>Агрохолдинг «Заречье», 1200 коров</small>
-                </div>
-                <div class="case-card">
-                    <div class="case-stats" data-target="8.2">0%</div>
-                    <p>рост выхода молока</p>
-                    <small>ООО «Луговое», 350 голов</small>
-                </div>
-                <div class="case-card">
-                    <div class="case-stats" data-target="21">0%</div>
-                    <p>снижение кетозов</p>
-                    <small>молочный комплекс «Нива»</small>
-                </div>
+                <div class="case-card"><div class="case-stats" data-target="12">+0%</div><p>прирост удоя</p><small>ферма «Родные просторы», 620 голов</small></div>
+                <div class="case-card"><div class="case-stats" data-target="15">-0%</div><p>снижение затрат на корма</p><small>Агрохолдинг «Заречье», 1200 коров</small></div>
+                <div class="case-card"><div class="case-stats" data-target="8.2">0%</div><p>рост выхода молока</p><small>ООО «Луговое», 350 голов</small></div>
+                <div class="case-card"><div class="case-stats" data-target="21">0%</div><p>снижение кетозов</p><small>молочный комплекс «Нива»</small></div>
             </div>
         </div>
     </div>
@@ -588,7 +573,7 @@
                     <div class="calc-field"><label>📅 Базовый надой (кг/сут)</label><input type="number" id="baseYield" value="28"></div>
                 </div>
                 <button id="calcBtn" class="btn-primary" style="width:100%;">Рассчитать экономию</button>
-                <button id="pdfBtn" class="btn-outline" style="margin-top:20px;">📄 Скачать отчёт в PDF</button>
+                <button id="pdfBtn" class="btn-outline" style="margin-top:15px;">📄 Скачать отчёт в PDF</button>
                 <div id="calcResult" class="result-box"></div>
             </div>
         </div>
@@ -598,23 +583,47 @@
         <div class="section">
             <div class="section-title">🔍 Узнайте, сколько вы теряете</div>
             <div class="contact-form">
-                <form id="feedbackForm">
-                    <div class="input-group"><input type="text" placeholder="Ваше имя" required id="name"></div>
-                    <div class="input-group"><input type="tel" placeholder="Телефон" required id="phone"></div>
-                    <div class="input-group"><input type="email" placeholder="E-mail" required id="email"></div>
+                <form id="feedbackForm" action="https://formsubmit.co/novoselov_20_00@mail.ru" method="POST">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_subject" value="Новая заявка с сайта MilkHunter">
+                    <input type="hidden" name="_next" value="https://milkhunter.ru/thanks.html">
+                    <div class="input-group"><input type="text" placeholder="Ваше имя" required name="name"></div>
+                    <div class="input-group"><input type="tel" placeholder="Телефон" required name="phone"></div>
+                    <div class="input-group"><input type="email" placeholder="E-mail" required name="email"></div>
                     <div class="input-group">
-                        <select id="herdSize">
+                        <select name="herdSize">
                             <option value="200-500">Поголовье 200–500</option>
                             <option value="500-1000">500–1000</option>
                             <option value="1000+">1000+</option>
                         </select>
                     </div>
-                    <div class="input-group">
-                        <label><input type="checkbox" id="sendReport"> Отправить детальный анализ текущего рациона</label>
-                    </div>
+                    <div class="input-group"><textarea rows="3" placeholder="Дополнительная информация" name="message"></textarea></div>
                     <button type="submit" class="btn-primary" style="width:100%;">Получить анализ рациона →</button>
                 </form>
-                <p style="margin-top: 20px; font-size:0.8rem; text-align:center;">Мы подготовим индивидуальный отчёт об ошибках в кормлении и скрытых потерях. Бесплатно.</p>
+                <p style="margin-top: 20px; font-size:0.8rem; text-align:center;">Мы подготовим индивидуальный отчёт об ошибках в кормлении и свяжемся с вами. Бесплатно.</p>
+            </div>
+        </div>
+    </div>
+
+    <div style="background: var(--bg-main);">
+        <div class="container section">
+            <div class="section-title">📜 Регистрация ПО и партнёры</div>
+            <div style="display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; align-items: center;">
+                <div style="background: white; border-radius: 24px; padding: 15px; text-align: center; width: 200px;"><img src="https://via.placeholder.com/150x80?text=Роспатент" style="max-width:100%; border-radius:12px;"><p style="margin-top:10px; font-weight:500;">Свидетельство о регистрации программы для ЭВМ</p></div>
+                <div style="background: white; border-radius: 24px; padding: 15px; text-align: center; width: 200px;"><img src="https://via.placeholder.com/150x80?text=Союз+животноводов" style="max-width:100%; border-radius:12px;"><p>Официальный партнёр Союза животноводов</p></div>
+                <div style="background: white; border-radius: 24px; padding: 15px; text-align: center; width: 200px;"><img src="https://via.placeholder.com/150x80?text=Росагролизинг" style="max-width:100%; border-radius:12px;"><p>Совместно с «Росагролизинг»</p></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="faq">
+        <div class="section">
+            <div class="section-title">❓ Часто задаваемые вопросы</div>
+            <div style="max-width: 800px; margin: 0 auto;">
+                <div style="background: var(--bg-card); border-radius: 28px; margin-bottom: 18px; padding: 20px;"><h3 style="margin-bottom: 8px;">Сколько стоит годовая подписка?</h3><p>200 000 рублей в год. Включены все обновления, техподдержка и мобильное приложение.</p></div>
+                <div style="background: var(--bg-card); border-radius: 28px; margin-bottom: 18px; padding: 20px;"><h3 style="margin-bottom: 8px;">Можем ли мы протестировать программу бесплатно?</h3><p>Да, мы предлагаем бесплатный пилот на 1 месяц. Вы загружаете свои рационы, получаете анализ и рекомендации.</p></div>
+                <div style="background: var(--bg-card); border-radius: 28px; margin-bottom: 18px; padding: 20px;"><h3 style="margin-bottom: 8px;">Нужно ли покупать дополнительные датчики?</h3><p>Нет. MilkHunter — полностью программное решение. Работает на ваших компьютерах и планшетах Android.</p></div>
+                <div style="background: var(--bg-card); border-radius: 28px; margin-bottom: 18px; padding: 20px;"><h3 style="margin-bottom: 8px;">Как программа получает данные о кормах?</h3><p>Вы загружаете фотографии этикеток, PDF-анализы или вносите данные вручную. ИИ автоматически распознаёт показатели.</p></div>
             </div>
         </div>
     </div>
@@ -624,47 +633,35 @@
     <div class="container">
         <p>© 2026 MilkHunter</p>
         <p>📞 +7 (927) 738-22-70 &nbsp; ✉️ novoselov_20_00@mail.ru</p>
-        <div class="qr-code">
-            <a href="https://wa.me/79277382270" target="_blank"><img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://wa.me/79277382270" alt="QR-код WhatsApp"></a>
-            <p>Напишите нам в WhatsApp</p>
-        </div>
+        <div class="qr-code"><a href="https://wa.me/79277382270" target="_blank"><img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://wa.me/79277382270" alt="QR-код WhatsApp"></a><p>Напишите нам в WhatsApp</p></div>
     </div>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
-    // Swiper карусель
+    // Swiper
     new Swiper('.swiper', { loop: true, autoplay: { delay: 3500, disableOnInteraction: false }, pagination: { el: '.swiper-pagination', clickable: true } });
 
-    // Анимированный счётчик ферм
+    // Счётчик ферм
+    let targetFarms = 147, currentFarms = 0;
     const farmSpan = document.getElementById('farmCount');
-    let targetFarms = 147;
-    let currentFarms = 0;
-    const counterBlock = document.getElementById('counterBlock');
     function animateCounter() {
         let step = Math.ceil(targetFarms / 50);
         let interval = setInterval(() => {
             currentFarms += step;
-            if (currentFarms >= targetFarms) {
-                currentFarms = targetFarms;
-                farmSpan.innerText = currentFarms;
-                clearInterval(interval);
-            } else farmSpan.innerText = currentFarms;
+            if (currentFarms >= targetFarms) { currentFarms = targetFarms; clearInterval(interval); }
+            farmSpan.innerText = currentFarms;
         }, 20);
     }
     animateCounter();
-    counterBlock.addEventListener('click', () => {
+    document.getElementById('counterBlock').addEventListener('click', () => {
         let newVal = prompt('Введите количество ферм (только число):', targetFarms);
-        if (newVal !== null && !isNaN(parseInt(newVal))) {
-            targetFarms = parseInt(newVal);
-            currentFarms = 0;
-            animateCounter();
-        }
+        if (newVal && !isNaN(parseInt(newVal))) { targetFarms = parseInt(newVal); currentFarms = 0; animateCounter(); }
     });
 
     // Анимированные цифры в кейсах
     const caseNumbers = document.querySelectorAll('.case-stats');
-    const observer = new IntersectionObserver((entries) => {
+    const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const el = entry.target;
@@ -673,10 +670,8 @@
                 const step = Math.ceil(target / 40);
                 const upd = setInterval(() => {
                     current += step;
-                    if (current >= target) {
-                        el.innerText = (el.innerText.includes('-') ? '-' : '+') + target + (el.innerText.includes('%') ? '%' : '');
-                        clearInterval(upd);
-                    } else el.innerText = (el.innerText.includes('-') ? '-' : '+') + current + (el.innerText.includes('%') ? '%' : '');
+                    if (current >= target) { el.innerText = (el.innerText.includes('-') ? '-' : '+') + target + (el.innerText.includes('%') ? '%' : ''); clearInterval(upd); }
+                    else el.innerText = (el.innerText.includes('-') ? '-' : '+') + current + (el.innerText.includes('%') ? '%' : '');
                 }, 20);
                 observer.unobserve(el);
             }
@@ -684,79 +679,53 @@
     }, { threshold: 0.5 });
     caseNumbers.forEach(el => observer.observe(el));
 
-    // Калькулятор с ползунками
-    const cowsRange = document.getElementById('cowsRange');
-    const cowsVal = document.getElementById('cowsVal');
-    const feedCostRange = document.getElementById('feedCostRange');
-    const feedCostVal = document.getElementById('feedCostVal');
-    const milkPriceInput = document.getElementById('milkPrice');
-    const savePctInput = document.getElementById('savePct');
-    const gainPctInput = document.getElementById('gainPct');
-    const baseYieldInput = document.getElementById('baseYield');
-    const calcBtn = document.getElementById('calcBtn');
-    const resultDiv = document.getElementById('calcResult');
-
-    cowsRange.addEventListener('input', () => { cowsVal.innerText = cowsRange.value; updateCalc(); });
-    feedCostRange.addEventListener('input', () => { feedCostVal.innerText = Number(feedCostRange.value).toLocaleString(); updateCalc(); });
-    milkPriceInput.addEventListener('input', updateCalc);
-    savePctInput.addEventListener('input', updateCalc);
-    gainPctInput.addEventListener('input', updateCalc);
-    baseYieldInput.addEventListener('input', updateCalc);
-
+    // Калькулятор
+    const cowsRange = document.getElementById('cowsRange'), cowsVal = document.getElementById('cowsVal');
+    const feedCostRange = document.getElementById('feedCostRange'), feedCostVal = document.getElementById('feedCostVal');
+    const milkPrice = document.getElementById('milkPrice'), savePct = document.getElementById('savePct'), gainPct = document.getElementById('gainPct'), baseYield = document.getElementById('baseYield');
+    const calcBtn = document.getElementById('calcBtn'), resultDiv = document.getElementById('calcResult');
     function updateCalc() {
-        let cows = parseFloat(cowsRange.value);
-        let feedCost = parseFloat(feedCostRange.value);
-        let milkPrice = parseFloat(milkPriceInput.value) || 45;
-        let savePct = parseFloat(savePctInput.value) / 100 || 0;
-        let gainPct = parseFloat(gainPctInput.value) / 100 || 0;
-        let baseYield = parseFloat(baseYieldInput.value) || 28;
-        const feedSavings = feedCost * savePct;
-        const extraMilkDay = baseYield * gainPct;
-        const extraMilkMonth = extraMilkDay * cows * 30;
-        const extraRevenue = extraMilkMonth * milkPrice;
+        let cows = parseFloat(cowsRange.value), feedCost = parseFloat(feedCostRange.value), milkPriceVal = parseFloat(milkPrice.value) || 45;
+        let save = parseFloat(savePct.value)/100 || 0, gain = parseFloat(gainPct.value)/100 || 0, base = parseFloat(baseYield.value) || 28;
+        const feedSavings = feedCost * save;
+        const extraMilkMonth = (base * gain) * cows * 30;
+        const extraRevenue = extraMilkMonth * milkPriceVal;
         const totalBenefit = feedSavings + extraRevenue;
         const subscription = 200000;
         let payback = totalBenefit > 0 ? (subscription / totalBenefit).toFixed(1) : '—';
-        let paybackPercent = totalBenefit > 0 ? Math.min(100, (totalBenefit / subscription) * 100) : 0;
-        resultDiv.innerHTML = `
-            <strong style="font-size:1.3rem;">✅ Ваш результат</strong><br><br>
-            🐄 Стадо: <strong>${cows}</strong> коров<br>
-            💰 Экономия кормов: <strong style="color:#0B3D2E;">${feedSavings.toFixed(0)} ₽/мес</strong><br>
-            🥛 Доп. выручка от роста удоев: <strong style="color:#0B3D2E;">${extraRevenue.toFixed(0)} ₽/мес</strong><br>
-            🎯 Общая ежемесячная выгода: <strong style="font-size:1.8rem; color:#0B3D2E;">${totalBenefit.toFixed(0)} ₽</strong><br>
-            💳 Годовая подписка: 200 000 ₽<br>
-            ⏱️ Срок окупаемости: <strong>${payback} месяцев</strong>
-            <div class="progress-bar"><div class="progress-fill" style="width: ${paybackPercent}%;"></div></div>
-            <span style="background:#E7DDCF; padding:4px 18px; display:inline-block; border-radius:40px; margin-top:16px;">🚀 Закажите анализ вашего рациона →</span>
-        `;
+        let percent = totalBenefit > 0 ? Math.min(100, (totalBenefit / subscription) * 100) : 0;
+        resultDiv.innerHTML = `<strong>✅ Ваш результат</strong><br>🐄 Стадо: ${cows} коров<br>💰 Экономия кормов: ${feedSavings.toFixed(0)} ₽/мес<br>🥛 Доп. выручка: ${extraRevenue.toFixed(0)} ₽/мес<br>🎯 Общая выгода: <strong style="font-size:1.6rem;">${totalBenefit.toFixed(0)} ₽/мес</strong><br>💳 Подписка: 200 000 ₽/год<br>⏱️ Окупаемость: ${payback} мес<div class="progress-bar"><div class="progress-fill" style="width:${percent}%;"></div></div><span style="background:#E7DDCF; padding:4px 14px; border-radius:40px;">🚀 Закажите анализ рациона</span>`;
     }
+    cowsRange.addEventListener('input', () => { cowsVal.innerText = cowsRange.value; updateCalc(); });
+    feedCostRange.addEventListener('input', () => { feedCostVal.innerText = Number(feedCostRange.value).toLocaleString(); updateCalc(); });
+    milkPrice.addEventListener('input', updateCalc);
+    savePct.addEventListener('input', updateCalc);
+    gainPct.addEventListener('input', updateCalc);
+    baseYield.addEventListener('input', updateCalc);
+    calcBtn.addEventListener('click', updateCalc);
     updateCalc();
 
-    // PDF отчёт
-    document.getElementById('pdfBtn').addEventListener('click', () => {
-        alert('Функция сохранения отчёта в разработке. Вы можете скопировать данные калькулятора.');
-        window.print();
+    // PDF (печать)
+    document.getElementById('pdfBtn').addEventListener('click', () => { window.print(); });
+
+    // Табы
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const tabId = btn.getAttribute('data-tab');
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        });
     });
 
-    // Форма
-    const form = document.getElementById('feedbackForm');
-    form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const name = document.getElementById('name').value.trim();
-        if (!name) alert('Пожалуйста, заполните имя.');
-        else alert(`Спасибо, ${name}! Мы подготовим индивидуальный отчёт об ошибках в кормлении и свяжемся с вами.`);
-        form.reset();
-    });
-
-    // scroll reveal
-    const faders = document.querySelectorAll('.fade-up');
+    // Scroll reveal
+    const faders = document.querySelectorAll('.card, .case-card, .economy-table');
     const appearOptions = { threshold: 0.2 };
     const appearOnScroll = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) entry.target.classList.add('visible');
-        });
+        entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
     }, appearOptions);
-    document.querySelectorAll('.card, .case-card, .economy-table').forEach(el => { el.classList.add('fade-up'); appearOnScroll.observe(el); });
+    faders.forEach(el => { el.classList.add('fade-up'); appearOnScroll.observe(el); });
 </script>
 </body>
 </html>
