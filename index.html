@@ -583,23 +583,32 @@
         <div class="section">
             <div class="section-title">🔍 Узнайте, сколько вы теряете</div>
             <div class="contact-form">
-                <form id="feedbackForm" action="https://formsubmit.co/novoselov_20_00@mail.ru" method="POST">
-                    <input type="hidden" name="_captcha" value="false">
-                    <input type="hidden" name="_subject" value="Новая заявка с сайта MilkHunter">
-                    <input type="hidden" name="_next" value="https://milkhunter.ru/thanks.html">
-                    <div class="input-group"><input type="text" placeholder="Ваше имя" required name="name"></div>
-                    <div class="input-group"><input type="tel" placeholder="Телефон" required name="phone"></div>
-                    <div class="input-group"><input type="email" placeholder="E-mail" required name="email"></div>
-                    <div class="input-group">
-                        <select name="herdSize">
-                            <option value="200-500">Поголовье 200–500</option>
-                            <option value="500-1000">500–1000</option>
-                            <option value="1000+">1000+</option>
-                        </select>
-                    </div>
-                    <div class="input-group"><textarea rows="3" placeholder="Дополнительная информация" name="message"></textarea></div>
-                    <button type="submit" class="btn-primary" style="width:100%;">Получить анализ рациона →</button>
-                </form>
+                <form id="feedbackForm" action="https://api.web3forms.com/submit" method="POST">
+    <input type="hidden" name="access_key" value="929b341e-b022-4de1-97c9-043287fa9088">
+    <input type="hidden" name="subject" value="Новая заявка с сайта MilkHunter">
+    <input type="hidden" name="from_name" value="MilkHunter Site">
+
+    <div class="input-group">
+        <input type="text" name="name" placeholder="Ваше имя" required>
+    </div>
+    <div class="input-group">
+        <input type="tel" name="phone" placeholder="Телефон" required>
+    </div>
+    <div class="input-group">
+        <input type="email" name="email" placeholder="E-mail" required>
+    </div>
+    <div class="input-group">
+        <select name="herdSize">
+            <option value="200-500">Поголовье 200–500</option>
+            <option value="500-1000">500–1000</option>
+            <option value="1000+">1000+</option>
+        </select>
+    </div>
+    <div class="input-group">
+        <textarea rows="3" placeholder="Дополнительная информация" name="message"></textarea>
+    </div>
+    <button type="submit" class="btn-primary">Получить анализ рациона →</button>
+</form>
                 <p style="margin-top: 20px; font-size:0.8rem; text-align:center;">Мы подготовим индивидуальный отчёт об ошибках в кормлении и свяжемся с вами. Бесплатно.</p>
             </div>
         </div>
