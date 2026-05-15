@@ -10,7 +10,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
     <style>
-        /* ----- RESET & GLOBALS ----- */
         * {
             margin: 0;
             padding: 0;
@@ -38,7 +37,6 @@
             margin: 0 auto;
             padding: 0 20px;
         }
-        /* ----- navbar (адаптив) ----- */
         .navbar {
             position: fixed;
             top: 0;
@@ -122,7 +120,6 @@
             display: inline-block;
             font-size: 0.85rem;
         }
-        /* ----- hero ----- */
         .hero {
             padding-top: 100px;
             padding-bottom: 50px;
@@ -170,7 +167,6 @@
             object-fit: cover;
             border-radius: 28px;
         }
-        /* ----- общие секции ----- */
         .section {
             padding: 50px 0;
         }
@@ -355,88 +351,41 @@
             border-radius: 28px;
             resize: vertical;
         }
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
         footer {
             background: var(--brand-primary);
             color: #CBD5CF;
             text-align: center;
             padding: 35px 20px;
         }
-        .qr-code img {
-            width: 70px;
-            height: 70px;
-            margin-top: 10px;
-        }
-        /* ----- адаптивность под телефон ----- */
         @media (max-width: 768px) {
-            .container {
-                padding: 0 16px;
-            }
-            .hero-grid {
-                flex-direction: column;
-            }
-            .hero-text {
-                text-align: center;
-            }
-            .hero-stats-banner {
-                justify-content: center;
-            }
-            .swiper {
-                max-width: 100%;
-            }
-            .nav-flex {
-                justify-content: center;
-            }
-            .logo {
-                font-size: 1.4rem;
-            }
-            .farm-counter {
-                padding: 2px 12px;
-            }
-            .counter-num {
-                font-size: 1rem;
-            }
-            .nav-links {
-                justify-content: center;
-                gap: 12px;
-            }
-            .btn-primary, .btn-outline {
-                padding: 6px 16px;
-                font-size: 0.75rem;
-            }
-            .card h3 {
-                font-size: 1.2rem;
-            }
-            .step-card {
-                padding-left: 42px;
-            }
-            .step-number {
-                width: 30px;
-                height: 30px;
-                font-size: 1rem;
-            }
-            .calc-field {
-                min-width: 140px;
-            }
-            .result-box {
-                padding: 16px;
-            }
+            .container { padding: 0 16px; }
+            .hero-grid { flex-direction: column; }
+            .hero-text { text-align: center; }
+            .hero-stats-banner { justify-content: center; }
+            .swiper { max-width: 100%; }
+            .nav-flex { justify-content: center; }
+            .logo { font-size: 1.4rem; }
+            .farm-counter { padding: 2px 12px; }
+            .counter-num { font-size: 1rem; }
+            .nav-links { justify-content: center; gap: 12px; }
+            .btn-primary, .btn-outline { padding: 6px 16px; font-size: 0.75rem; }
+            .card h3 { font-size: 1.2rem; }
+            .step-card { padding-left: 42px; }
+            .step-number { width: 30px; height: 30px; font-size: 1rem; }
+            .calc-field { min-width: 140px; }
+            .result-box { padding: 16px; }
         }
         @media (max-width: 480px) {
-            .section {
-                padding: 35px 0;
-            }
-            .card-grid {
-                grid-template-columns: 1fr;
-            }
-            .tabs {
-                flex-direction: column;
-                align-items: stretch;
-            }
-            .tab-btn {
-                text-align: center;
-            }
+            .section { padding: 35px 0; }
+            .card-grid { grid-template-columns: 1fr; }
+            .tabs { flex-direction: column; align-items: stretch; }
+            .tab-btn { text-align: center; }
         }
-        /* анимации */
         .fade-up {
             opacity: 0;
             transform: translateY(25px);
@@ -579,74 +528,38 @@
         </div>
     </div>
 
+    <!-- ЕДИНАЯ ФОРМА С ЗАГРУЗКОЙ ФАЙЛА -->
     <div class="container" id="contact">
         <div class="section">
             <div class="section-title">🔍 Узнайте, сколько вы теряете</div>
             <div class="contact-form">
-                <form id="feedbackForm" action="https://ВАШ_АДРЕС_WORKER.workers.dev" method="POST" enctype="multipart/form-data">
-    <div class="input-group">
-        <input type="text" name="name" placeholder="Ваше имя" required>
-    </div>
-    <div class="input-group">
-        <input type="tel" name="phone" placeholder="Телефон" required>
-    </div>
-    <div class="input-group">
-        <input type="email" name="email" placeholder="E-mail" required>
-    </div>
-    <div class="input-group">
-        <select name="herdSize">
-            <option value="200-500">Поголовье 200–500</option>
-            <option value="500-1000">500–1000</option>
-            <option value="1000+">1000+</option>
-        </select>
-    </div>
-    <div class="input-group">
-        <label for="rationFile">Загрузите файл с рационом (фото или PDF):</label>
-        <input type="file" id="rationFile" name="file" accept=".pdf,image/*">
-    </div>
-    <div class="input-group">
-        <textarea rows="3" name="message" placeholder="Дополнительная информация"></textarea>
-    </div>
-    <button type="submit" class="btn-primary">Отправить заявку</button>
-</form> action="blue-mode-4f92milkhunter.zegger-pro.workers.dev
-/" method="POST">
-    <input type="hidden" name="access_key" value="929b341e-b022-4de1-97c9-043287fa9088">
-    <input type="hidden" name="subject" value="Новая заявка с сайта MilkHunter">
-    <input type="hidden" name="from_name" value="MilkHunter Site">
-
-    <div class="input-group">
-        <input type="text" name="name" placeholder="Ваше имя" required>
-    </div>
-    <div class="input-group">
-        <input type="tel" name="phone" placeholder="Телефон" required>
-    </div>
-    <div class="input-group">
-        <input type="email" name="email" placeholder="E-mail" required>
-    </div>
-    <div class="input-group">
-        <select name="herdSize">
-            <option value="200-500">Поголовье 200–500</option>
-            <option value="500-1000">500–1000</option>
-            <option value="1000+">1000+</option>
-        </select>
-    </div>
-    <div class="input-group">
-        <textarea rows="3" placeholder="Дополнительная информация" name="message"></textarea>
-    </div>
-    <button type="submit" class="btn-primary">Получить анализ рациона →</button>
-</form>
+                <form id="feedbackForm" action="https://milkhunter-telegram-proxy.zegger-pro.workers.dev/submit-form" method="POST" enctype="multipart/form-data">
+                    <div class="input-group">
+                        <input type="text" name="name" placeholder="Ваше имя" required>
+                    </div>
+                    <div class="input-group">
+                        <input type="tel" name="phone" placeholder="Телефон" required>
+                    </div>
+                    <div class="input-group">
+                        <input type="email" name="email" placeholder="E-mail" required>
+                    </div>
+                    <div class="input-group">
+                        <select name="herdSize">
+                            <option value="200-500">Поголовье 200–500</option>
+                            <option value="500-1000">500–1000</option>
+                            <option value="1000+">1000+</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="rationFile">Загрузите файл с рационом (фото или PDF):</label>
+                        <input type="file" id="rationFile" name="file" accept=".pdf,image/*">
+                    </div>
+                    <div class="input-group">
+                        <textarea rows="3" name="message" placeholder="Дополнительная информация"></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary">Получить анализ рациона →</button>
+                </form>
                 <p style="margin-top: 20px; font-size:0.8rem; text-align:center;">Мы подготовим индивидуальный отчёт об ошибках в кормлении и свяжемся с вами. Бесплатно.</p>
-            </div>
-        </div>
-    </div>
-
-    <div style="background: var(--bg-main);">
-        <div class="container section">
-            <div class="section-title">📜 Регистрация ПО и партнёры</div>
-            <div style="display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; align-items: center;">
-                <div style="background: white; border-radius: 24px; padding: 15px; text-align: center; width: 200px;"><img src="https://via.placeholder.com/150x80?text=Роспатент" style="max-width:100%; border-radius:12px;"><p style="margin-top:10px; font-weight:500;">Свидетельство о регистрации программы для ЭВМ</p></div>
-                <div style="background: white; border-radius: 24px; padding: 15px; text-align: center; width: 200px;"><img src="https://via.placeholder.com/150x80?text=Союз+животноводов" style="max-width:100%; border-radius:12px;"><p>Официальный партнёр Союза животноводов</p></div>
-                <div style="background: white; border-radius: 24px; padding: 15px; text-align: center; width: 200px;"><img src="https://via.placeholder.com/150x80?text=Росагролизинг" style="max-width:100%; border-radius:12px;"><p>Совместно с «Росагролизинг»</p></div>
             </div>
         </div>
     </div>
@@ -667,25 +580,28 @@
 <footer>
     <div class="container">
         <p>© 2026 MilkHunter</p>
-        <p>📞 +7 (927) 738-22-70 &nbsp; ✉️ novoselov_20_00@mail.ru</p>
-        <div class="qr-code"><a href="https://wa.me/79277382270" target="_blank"><img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://wa.me/79277382270" alt="QR-код WhatsApp"></a><p>Напишите нам в WhatsApp</p></div>
+        <p>📞 +7 (927) 738-22-70</p>
     </div>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
-    // Swiper
+    // Swiper карусель
     new Swiper('.swiper', { loop: true, autoplay: { delay: 3500, disableOnInteraction: false }, pagination: { el: '.swiper-pagination', clickable: true } });
 
-    // Счётчик ферм
-    let targetFarms = 147, currentFarms = 0;
+    // Анимированный счётчик ферм
     const farmSpan = document.getElementById('farmCount');
+    let targetFarms = 147;
+    let currentFarms = 0;
     function animateCounter() {
         let step = Math.ceil(targetFarms / 50);
         let interval = setInterval(() => {
             currentFarms += step;
-            if (currentFarms >= targetFarms) { currentFarms = targetFarms; clearInterval(interval); }
-            farmSpan.innerText = currentFarms;
+            if (currentFarms >= targetFarms) {
+                currentFarms = targetFarms;
+                farmSpan.innerText = currentFarms;
+                clearInterval(interval);
+            } else farmSpan.innerText = currentFarms;
         }, 20);
     }
     animateCounter();
@@ -696,7 +612,7 @@
 
     // Анимированные цифры в кейсах
     const caseNumbers = document.querySelectorAll('.case-stats');
-    const observer = new IntersectionObserver(entries => {
+    const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const el = entry.target;
@@ -705,8 +621,10 @@
                 const step = Math.ceil(target / 40);
                 const upd = setInterval(() => {
                     current += step;
-                    if (current >= target) { el.innerText = (el.innerText.includes('-') ? '-' : '+') + target + (el.innerText.includes('%') ? '%' : ''); clearInterval(upd); }
-                    else el.innerText = (el.innerText.includes('-') ? '-' : '+') + current + (el.innerText.includes('%') ? '%' : '');
+                    if (current >= target) {
+                        el.innerText = (el.innerText.includes('-') ? '-' : '+') + target + (el.innerText.includes('%') ? '%' : '');
+                        clearInterval(upd);
+                    } else el.innerText = (el.innerText.includes('-') ? '-' : '+') + current + (el.innerText.includes('%') ? '%' : '');
                 }, 20);
                 observer.unobserve(el);
             }
@@ -714,14 +632,25 @@
     }, { threshold: 0.5 });
     caseNumbers.forEach(el => observer.observe(el));
 
-    // Калькулятор
-    const cowsRange = document.getElementById('cowsRange'), cowsVal = document.getElementById('cowsVal');
-    const feedCostRange = document.getElementById('feedCostRange'), feedCostVal = document.getElementById('feedCostVal');
-    const milkPrice = document.getElementById('milkPrice'), savePct = document.getElementById('savePct'), gainPct = document.getElementById('gainPct'), baseYield = document.getElementById('baseYield');
-    const calcBtn = document.getElementById('calcBtn'), resultDiv = document.getElementById('calcResult');
+    // Калькулятор окупаемости
+    const cowsRange = document.getElementById('cowsRange');
+    const cowsVal = document.getElementById('cowsVal');
+    const feedCostRange = document.getElementById('feedCostRange');
+    const feedCostVal = document.getElementById('feedCostVal');
+    const milkPrice = document.getElementById('milkPrice');
+    const savePct = document.getElementById('savePct');
+    const gainPct = document.getElementById('gainPct');
+    const baseYield = document.getElementById('baseYield');
+    const calcBtn = document.getElementById('calcBtn');
+    const resultDiv = document.getElementById('calcResult');
+
     function updateCalc() {
-        let cows = parseFloat(cowsRange.value), feedCost = parseFloat(feedCostRange.value), milkPriceVal = parseFloat(milkPrice.value) || 45;
-        let save = parseFloat(savePct.value)/100 || 0, gain = parseFloat(gainPct.value)/100 || 0, base = parseFloat(baseYield.value) || 28;
+        let cows = parseFloat(cowsRange.value);
+        let feedCost = parseFloat(feedCostRange.value);
+        let milkPriceVal = parseFloat(milkPrice.value) || 45;
+        let save = parseFloat(savePct.value)/100 || 0;
+        let gain = parseFloat(gainPct.value)/100 || 0;
+        let base = parseFloat(baseYield.value) || 28;
         const feedSavings = feedCost * save;
         const extraMilkMonth = (base * gain) * cows * 30;
         const extraRevenue = extraMilkMonth * milkPriceVal;
@@ -729,7 +658,7 @@
         const subscription = 200000;
         let payback = totalBenefit > 0 ? (subscription / totalBenefit).toFixed(1) : '—';
         let percent = totalBenefit > 0 ? Math.min(100, (totalBenefit / subscription) * 100) : 0;
-        resultDiv.innerHTML = `<strong>✅ Ваш результат</strong><br>🐄 Стадо: ${cows} коров<br>💰 Экономия кормов: ${feedSavings.toFixed(0)} ₽/мес<br>🥛 Доп. выручка: ${extraRevenue.toFixed(0)} ₽/мес<br>🎯 Общая выгода: <strong style="font-size:1.6rem;">${totalBenefit.toFixed(0)} ₽/мес</strong><br>💳 Подписка: 200 000 ₽/год<br>⏱️ Окупаемость: ${payback} мес<div class="progress-bar"><div class="progress-fill" style="width:${percent}%;"></div></div><span style="background:#E7DDCF; padding:4px 14px; border-radius:40px;">🚀 Закажите анализ рациона</span>`;
+        resultDiv.innerHTML = `<strong>✅ Ваш результат</strong><br><br>🐄 Стадо: ${cows} коров<br>💰 Экономия кормов: ${feedSavings.toFixed(0)} ₽/мес<br>🥛 Доп. выручка: ${extraRevenue.toFixed(0)} ₽/мес<br>🎯 Общая выгода: <strong style="font-size:1.6rem;">${totalBenefit.toFixed(0)} ₽/мес</strong><br>💳 Подписка: 200 000 ₽/год<br>⏱️ Окупаемость: ${payback} мес<div class="progress-bar"><div class="progress-fill" style="width:${percent}%;"></div></div><span style="background:#E7DDCF; padding:4px 14px; border-radius:40px;">🚀 Закажите анализ рациона</span>`;
     }
     cowsRange.addEventListener('input', () => { cowsVal.innerText = cowsRange.value; updateCalc(); });
     feedCostRange.addEventListener('input', () => { feedCostVal.innerText = Number(feedCostRange.value).toLocaleString(); updateCalc(); });
@@ -740,7 +669,7 @@
     calcBtn.addEventListener('click', updateCalc);
     updateCalc();
 
-    // PDF (печать)
+    // Кнопка PDF (печать)
     document.getElementById('pdfBtn').addEventListener('click', () => { window.print(); });
 
     // Табы
